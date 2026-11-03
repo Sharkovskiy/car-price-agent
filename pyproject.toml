@@ -1,0 +1,38 @@
+[project]
+name = "car-price-agent"
+version = "0.1.0"
+description = "LLM agent for used-car price recommendation and search, built on an XGBoost price model"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "pandas>=2.2,<3",  # same major version as on Kaggle, where the predictor module is trained and tested
+    "numpy>=1.26",
+    "pyarrow>=15",
+    "xgboost>=2.1",
+    "langgraph>=0.6",
+    "langchain-core>=0.3",
+    "langchain-groq>=0.3",
+    "gradio>=5",
+    "python-dotenv>=1.0",
+]
+
+[dependency-groups]
+dev = [
+    "pytest>=8",
+]
+
+[project.scripts]
+car-agent-ui = "car_agent.app:main"
+car-agent-eval = "car_agent.evaluation.run_eval:main"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/car_agent"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["src"]
+filterwarnings = ["ignore::FutureWarning:car_price_predictor"]

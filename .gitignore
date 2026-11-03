@@ -1,0 +1,25 @@
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+.pytest_cache/
+*.egg-info/
+build/
+dist/
+
+# Secrets
+.env
+
+# Model artifacts and data exported from Kaggle (large, not versioned)
+artifacts/*
+!artifacts/README.md
+
+# Evaluation outputs
+eval_results/
+
+# Gradio
+.gradio/
+
+# IDE
+.vscode/
+.idea/
